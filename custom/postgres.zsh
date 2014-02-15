@@ -1,2 +1,2 @@
 # postgresql
-export PGDATA=`brew --prefix`/var/postgres
+export PGDATA=/usr/local/var/postgres
