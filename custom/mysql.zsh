@@ -1,3 +1,3 @@
-alias mysqlstart='mysql.server start'
-alias mysqlstop='mysql.server stop'
-alias mysqlrestart='mysql.server restart'
+alias startmysql='mysql.server start'
+alias stopmysql='mysql.server stop'
+alias restartmysql='mysql.server restart'
