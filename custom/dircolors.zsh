@@ -1,3 +1,3 @@
 # require coreutils
 alias ls='gls --color=auto'
-eval $(gdircolors ~/.dircolors-solarized)
+eval $(gdircolors ~/.dotfiles/themes/dircolors-solarized/dircolors.256dark)
