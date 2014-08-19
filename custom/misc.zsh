@@ -6,3 +6,6 @@ export EDITOR='vim'
 
 # TERM
 export TERM=screen-256color
+
+# nodebrew
+export PATH=$HOME/.nodebrew/current/bin:$PATH
