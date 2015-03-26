@@ -13,3 +13,22 @@ function peco-select-history() {
 }
 zle -N peco-select-history
 bindkey '^r' peco-select-history
+
+
+function peco-path() {
+  local filepath="$(find . | grep -v '/\.' | peco --prompt 'PATH>')"
+  [ -z "$filepath" ] && return
+  if [ -n "$LBUFFER" ]; then
+    BUFFER="$LBUFFER$filepath"
+  else
+    if [ -d "$filepath" ]; then
+      BUFFER="cd $filepath"
+    elif [ -f "$filepath" ]; then
+      BUFFER="$EDITOR $filepath"
+    fi
+  fi
+  CURSOR=$#BUFFER
+}
+
+zle -N peco-path
+bindkey '^f' peco-path # Ctrl+f で起動
