@@ -31,4 +31,4 @@ function peco-path() {
 }
 
 zle -N peco-path
-bindkey '^f' peco-path # Ctrl+f で起動
+bindkey '^h' peco-path # Ctrl+h で起動
