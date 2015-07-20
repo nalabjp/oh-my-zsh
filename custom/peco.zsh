@@ -29,6 +29,16 @@ function peco-path() {
   fi
   CURSOR=$#BUFFER
 }
-
 zle -N peco-path
 bindkey '^g' peco-path # Ctrl+g で起動
+
+
+function agvim () {
+  vim $(ag $@ | peco --query "$LBUFFER" | awk -F : '{print "-c " $2 " " $1}')
+}
+zle -N agvim
+
+function ggrvim () {
+  vim $(git grep -n $@ | peco --query "$LBUFFER" | awk -F : '{print "-c " $2 " " $1}')
+}
+zle -N ggrvim
