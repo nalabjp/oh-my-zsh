@@ -38,6 +38,11 @@ function agvim () {
 }
 zle -N agvim
 
+function aghvim () {
+  vim $(agh $@ | peco --query "$LBUFFER" | awk -F : '{print "-c " $2 " " $1}')
+}
+zle -N aghvim
+
 function ggrvim () {
   vim $(git grep -n $@ | peco --query "$LBUFFER" | awk -F : '{print "-c " $2 " " $1}')
 }
