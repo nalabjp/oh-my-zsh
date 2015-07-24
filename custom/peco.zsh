@@ -33,17 +33,25 @@ zle -N peco-path
 bindkey '^g' peco-path # Ctrl+g で起動
 
 
+function peco-with-vim () {
+  if [[ -n $1 ]]; then
+    BUFFER="vim $1"
+    CURSOR=$#BUFFER
+  fi
+}
+
 function agvim () {
-  vim $(ag $@ | peco --query "$LBUFFER" | awk -F : '{print "-c " $2 " " $1}')
+  peco-with-vim $(ag $@ | peco --query "$LBUFFER" | awk -F : '{print "-c " $2 " " $1}')
 }
 zle -N agvim
 
 function aghvim () {
-  vim $(agh $@ | peco --query "$LBUFFER" | awk -F : '{print "-c " $2 " " $1}')
+  peco-with-vim $(agh $@ | peco --query "$LBUFFER" | awk -F : '{print "-c " $2 " " $1}')
 }
 zle -N aghvim
 
 function ggrvim () {
-  vim $(git grep -n $@ | peco --query "$LBUFFER" | awk -F : '{print "-c " $2 " " $1}')
+  peco-with-vim $(git grep -n $@ | peco --query "$LBUFFER" | awk -F : '{print "-c " $2 " " $1}')
 }
 zle -N ggrvim
+
