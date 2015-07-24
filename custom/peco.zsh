@@ -55,3 +55,23 @@ function ggrvim () {
 }
 zle -N ggrvim
 
+
+function peco-rails-command() {
+  local cmd=$(rails $1 -h | sed -ne '/^Please/,$p' | sed '/^ *$/d' | sed -ne '/^ /p' | sed 's/^[ ]*//g' | peco --prompt="[rails $1]")
+  if [[ -n $cmd ]]; then
+    BUFFER="rails $1 $cmd"
+    CURSOR=$#BUFFER
+  fi
+}
+
+function peco-rails-generate() {
+  peco-rails-command generate
+}
+zle -N peco-rails-generate
+alias rrg='peco-rails-generate'
+
+function peco-rails-destroy() {
+  peco-rails-command destroy
+}
+zle -N peco-rails-destroy
+alias rrd='peco-rails-destroy'
